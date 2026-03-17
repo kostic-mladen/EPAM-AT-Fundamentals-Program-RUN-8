@@ -20,7 +20,8 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio run src/configs/wdio.conf.js",
-    "wdio": "wdio run src/configs/wdio.conf.js"
+    "test:uc1": "wdio run src/configs/wdio.conf.js --spec src/tests/productDetails.spec.js",
+    "test:uc2": "wdio run src/configs/wdio.conf.js --spec src/tests/footer.spec.js"
   },
   "devDependencies": {
     "@wdio/cli": "^9.26.1",

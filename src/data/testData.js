@@ -13,4 +13,11 @@ const products = {
     fleeceJacket: 'Sauce Labs Fleece Jacket',
 };
 
-module.exports = { users, products };
+// Expected social media URLs used in footer link verification
+const socialLinks = {
+    twitter: 'https://twitter.com/saucelabs',
+    facebook: 'https://www.facebook.com/saucelabs',
+    linkedIn: 'https://www.linkedin.com/company/sauce-labs/',
+};
+
+module.exports = { users, products, socialLinks };
