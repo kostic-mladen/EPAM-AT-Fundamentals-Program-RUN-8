@@ -22,9 +22,10 @@ class InventoryPage extends BasePage {
     }
 
     // Clicks the product title link to navigate to the Product Details page
+    // JS click bypasses GeckoDriver's strict interactability checks in Firefox headless
     async clickProductTitle(productName) {
         const titleLink = await $(`//a[normalize-space(.)='${productName}']`);
-        await titleLink.click();
+        await browser.execute((el) => el.click(), titleLink);
     }
 }
 
