@@ -50,7 +50,9 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        // Add chromeOptions here if needed (e.g. headless mode, disable security)
+        // 'goog:chromeOptions': { args: ['--headless'] }     
     }],
 
     //
@@ -184,8 +186,10 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    // Runs once before all tests — maximize browser window for consistent viewport
+    before: function () {
+        browser.maximizeWindow();
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
