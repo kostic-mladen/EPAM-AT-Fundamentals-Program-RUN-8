@@ -3,18 +3,20 @@ const logger = require('../configs/utils/logger');
 const { users, socialLinks } = require('../data/testData');
 
 describe('UC-2: Footer & Social Links', () => {
-    // Login once and scroll to footer — shared state for all tests in this suite
-    before(async () => {
+    beforeEach(async () => {
         await inventoryPage.open();
         await loginComponent.login(users.standard.username, users.standard.password);
         await expect($('.inventory_list')).toBeDisplayed();
 
-        // Scroll to footer so social links are in view for all tests
         await footerComponent.scrollToFooter();
         logger.info('Scrolled to footer');
     });
 
-    // Step 1 — Verify Twitter link is visible, has correct href, and opens correct URL in new tab
+    afterEach(async () => {
+        await browser.deleteCookies();
+        logger.info('Cookies cleared after test');
+    });
+
     it('should display Twitter link and open correct URL in a new tab', async () => {
         await expect(footerComponent.twitterLink).toBeDisplayed();
         await expect(await footerComponent.getLinkHref(footerComponent.twitterLink)).toBe(socialLinks.twitter);
@@ -27,7 +29,6 @@ describe('UC-2: Footer & Social Links', () => {
         await expect(isCorrectUrl).toBe(true);
     });
 
-    // Step 2 — Verify Facebook link is visible, has correct href, and opens correct URL in new tab
     it('should display Facebook link and open correct URL in a new tab', async () => {
         await expect(footerComponent.facebookLink).toBeDisplayed();
         await expect(await footerComponent.getLinkHref(footerComponent.facebookLink)).toBe(socialLinks.facebook);
@@ -38,7 +39,6 @@ describe('UC-2: Footer & Social Links', () => {
         await expect(url).toContain('facebook.com/saucelabs');
     });
 
-    // Step 3 — Verify LinkedIn link is visible, has correct href, and opens correct URL in new tab
     it('should display LinkedIn link and open correct URL in a new tab', async () => {
         await expect(footerComponent.linkedInLink).toBeDisplayed();
         await expect(await footerComponent.getLinkHref(footerComponent.linkedInLink)).toBe(socialLinks.linkedIn);

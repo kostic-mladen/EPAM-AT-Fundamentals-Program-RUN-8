@@ -1,7 +1,7 @@
 const { When, Then } = require('@cucumber/cucumber');
-const { footerComponent } = require('../po');
-const logger = require('../configs/utils/logger');
-const { socialLinks } = require('../data/testData');
+const { footerComponent } = require('../../po');
+const logger = require('../../configs/utils/logger');
+const { socialLinks } = require('../../data/testData');
 
 // Scroll to the footer so social links are in view
 When('I scroll to the footer', async () => {

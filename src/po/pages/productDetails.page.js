@@ -23,11 +23,11 @@ class ProductDetailsPage extends BasePage {
     }
 
     async getPrice() {
-        return this.priceEl.getText();
+        return await this.priceEl.getText();
     }
 
     async getDescription() {
-        return this.descriptionEl.getText();
+        return await this.descriptionEl.getText();
     }
 
     async addToCart() {

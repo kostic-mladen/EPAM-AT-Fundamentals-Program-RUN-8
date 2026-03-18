@@ -22,7 +22,7 @@ class FooterComponent {
 
     // Returns the href attribute value of a given social link element
     async getLinkHref(linkElement) {
-        return linkElement.getAttribute('href');
+        return await linkElement.getAttribute('href');
     }
 
     // Clicks a social link and returns the URL opened in the new tab

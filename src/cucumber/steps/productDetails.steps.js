@@ -1,6 +1,6 @@
 const { When, Then } = require('@cucumber/cucumber');
-const { inventoryPage, productDetailsPage, headerComponent } = require('../po');
-const logger = require('../configs/utils/logger');
+const { inventoryPage, productDetailsPage, headerComponent } = require('../../po');
+const logger = require('../../configs/utils/logger');
 
 // Navigate to the details page and capture inventory data into the World object
 // Using regular functions (not arrow functions) to access Cucumber's `this` (World) context

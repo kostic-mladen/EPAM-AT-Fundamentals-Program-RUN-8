@@ -1,5 +1,6 @@
 // Lightweight logger utility — wraps console methods with log level prefix and ISO timestamp
 // Extend with additional levels (e.g. debug) or transports (e.g. file output) as the project grows
+/* eslint-disable no-console */
 const logger = {
     // Informational messages — test flow steps and state changes
     info(msg) {
