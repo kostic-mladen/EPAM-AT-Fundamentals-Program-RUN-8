@@ -1,4 +1,4 @@
-const { loginComponent, inventoryPage, productDetailsPage } = require('../po');
+const { loginComponent, inventoryPage, productDetailsPage, headerComponent } = require('../po');
 const logger = require('../configs/utils/logger');
 const { users, products } = require('../data/testData');
 
@@ -43,12 +43,17 @@ describe('UC-1: Product Details Verification', () => {
         await expect(detailsDescription).toBe(inventoryData.description);
     });
 
-    // Step 5 — Add the item to cart and confirm the button switches to "Remove"
+    // Step 5 — Add the item to cart and confirm the button switches to "Remove" and cart badge shows 1
     it(`should add "${PRODUCT_NAME}" to cart from the details page`, async () => {
         await productDetailsPage.addToCart();
         logger.info(`"${PRODUCT_NAME}" added to cart`);
 
         // Confirm the button switched to "Remove" after adding to cart
         await expect(productDetailsPage.removeButton).toBeDisplayed();
+
+        // Confirm the cart badge reflects the correct item count
+        const cartCount = await headerComponent.getCartCount();
+        logger.info(`Cart badge count: ${cartCount}`);
+        await expect(cartCount).toBe(1);
     });
 });
