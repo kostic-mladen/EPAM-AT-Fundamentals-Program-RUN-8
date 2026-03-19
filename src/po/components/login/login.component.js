@@ -1,21 +1,19 @@
-// Login form component — reusable across any test that requires authentication
 class LoginComponent {
-    // CSS — data-test attribute selector for the username input
+    // CSS — targets the username input by its data-test attribute
     get usernameInput() {
         return $('[data-test="username"]');
     }
 
-    // XPath — locate password input by its data-test attribute
+    // XPath — targets the password input by its data-test attribute
     get passwordInput() {
         return $('//input[@data-test="password"]');
     }
 
-    // CSS — data-test attribute selector for the login button
+    // CSS — targets the login button by its data-test attribute
     get loginButton() {
         return $('[data-test="login-button"]');
     }
 
-    // Fills in credentials and submits the login form
     async login(username, password) {
         await this.usernameInput.setValue(username);
         await this.passwordInput.setValue(password);

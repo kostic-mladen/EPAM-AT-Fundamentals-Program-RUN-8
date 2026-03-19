@@ -5,10 +5,7 @@ exports.config = {
     ...baseConfig,
 
     // Explicit order — UC-1 runs before UC-2 in each browser
-    specs: [
-        '../cucumber/features/productDetails.feature',
-        '../cucumber/features/footer.feature'
-    ],
+    specs: ['../cucumber/features/productDetails.feature', '../cucumber/features/footer.feature'],
 
     framework: 'cucumber',
     cucumberOpts: {

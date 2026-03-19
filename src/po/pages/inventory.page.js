@@ -1,13 +1,11 @@
 const BasePage = require('./base.page');
 
-// Page object for the Inventory (products listing) page (/inventory.html)
 class InventoryPage extends BasePage {
-    // Path used by BasePage.open() to navigate to this page
     get url() {
         return '/inventory.html';
     }
 
-    // Iterates all inventory items and returns price + description for the matching product name
+    // loops through all inventory items and returns price + description for the matching product
     async getProductDataByName(productName) {
         const items = await $$('.inventory_item');
         for (const item of items) {
@@ -21,11 +19,12 @@ class InventoryPage extends BasePage {
         throw new Error(`Product "${productName}" not found on inventory page`);
     }
 
-    // Clicks the product title link to navigate to the Product Details page
+    // XPath — normalize-space handles any extra whitespace in the link text
     // JS click bypasses GeckoDriver's strict interactability checks in Firefox headless
     async clickProductTitle(productName) {
         const titleLink = await $(`//a[normalize-space(.)='${productName}']`);
         await browser.execute((el) => el.click(), titleLink);
+        await this.waitForPageLoad();
     }
 }
 

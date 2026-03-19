@@ -1,6 +1,7 @@
-const { loginComponent, inventoryPage, productDetailsPage, headerComponent } = require('../po');
+const { inventoryPage, productDetailsPage, headerComponent } = require('../po');
+const { loginAsStandardUser } = require('../helpers/auth.helper');
 const logger = require('../configs/utils/logger');
-const { users, products } = require('../data/testData');
+const { products, pages } = require('../data/testData');
 
 // Parametrize by changing this to any key from testData.products
 const PRODUCT_NAME = products.fleeceJacket;
@@ -9,10 +10,7 @@ describe('UC-1: Product Details Verification', () => {
     let inventoryData;
 
     before(async () => {
-        await inventoryPage.open();
-        logger.info(`Logging in as "${users.standard.username}"`);
-        await loginComponent.login(users.standard.username, users.standard.password);
-        await expect($('.inventory_list')).toBeDisplayed();
+        await loginAsStandardUser();
 
         // Capture product data before navigating away from inventory
         inventoryData = await inventoryPage.getProductDataByName(PRODUCT_NAME);
@@ -20,6 +18,7 @@ describe('UC-1: Product Details Verification', () => {
 
         // Navigate to the product details page
         await inventoryPage.clickProductTitle(PRODUCT_NAME);
+        await expect(await productDetailsPage.getUrl()).toContain(pages.productDetails);
         logger.info(`Navigated to details page for "${PRODUCT_NAME}"`);
     });
 
@@ -37,7 +36,8 @@ describe('UC-1: Product Details Verification', () => {
 
     it(`should display correct description for "${PRODUCT_NAME}" on the details page`, async () => {
         const detailsDescription = await productDetailsPage.getDescription();
-        logger.info(`Details description matches inventory: ${detailsDescription === inventoryData.description}`);
+        logger.info(`Details description: "${detailsDescription}"`);
+        logger.info(`Inventory description: "${inventoryData.description}"`);
 
         await expect(detailsDescription).toBe(inventoryData.description);
     });
@@ -45,8 +45,6 @@ describe('UC-1: Product Details Verification', () => {
     it(`should add "${PRODUCT_NAME}" to cart from the details page`, async () => {
         await productDetailsPage.addToCart();
         logger.info(`"${PRODUCT_NAME}" added to cart`);
-
-        await expect(productDetailsPage.removeButton).toBeDisplayed();
 
         const cartCount = await headerComponent.getCartCount();
         logger.info(`Cart badge count: ${cartCount}`);

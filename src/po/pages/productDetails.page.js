@@ -1,23 +1,22 @@
 const BasePage = require('./base.page');
 
-// Page object for the Product Details page (/inventory-item.html)
 class ProductDetailsPage extends BasePage {
-    // XPath — locate price by its class attribute
+    // XPath — targets the price element by its class attribute
     get priceEl() {
         return $('//div[@class="inventory_details_price"]');
     }
 
-    // CSS — description element by class name
+    // CSS — targets the description element by its class name
     get descriptionEl() {
         return $('.inventory_details_desc');
     }
 
-    // XPath — matches any add-to-cart button regardless of the product name in data-test
+    // XPath — starts-with so it matches regardless of which product name is in the data-test attribute
     get addToCartButton() {
         return $('//button[starts-with(@data-test,"add-to-cart")]');
     }
 
-    // XPath — appears after adding to cart, confirms the item is in the cart
+    // XPath — starts-with to match the remove button for any product
     get removeButton() {
         return $('//button[starts-with(@data-test,"remove")]');
     }

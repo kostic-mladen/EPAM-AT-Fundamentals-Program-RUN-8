@@ -5,4 +5,10 @@ const headerComponent = require('./components/common/header.component');
 const inventoryPage = require('./pages/inventory.page');
 const productDetailsPage = require('./pages/productDetails.page');
 
-module.exports = { loginComponent, footerComponent, headerComponent, inventoryPage, productDetailsPage };
+module.exports = {
+    loginComponent,
+    footerComponent,
+    headerComponent,
+    inventoryPage,
+    productDetailsPage
+};

@@ -1,11 +1,10 @@
-// Common header component — present on all pages after login
 class HeaderComponent {
-    // CSS — cart badge showing number of items currently in the cart
+    // CSS — targets the cart badge by its class name
     get cartBadge() {
         return $('.shopping_cart_badge');
     }
 
-    // Returns the current cart item count as a number
+    // parseInt because getText() returns a string
     async getCartCount() {
         return parseInt(await this.cartBadge.getText(), 10);
     }

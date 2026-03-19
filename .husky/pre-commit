@@ -1,1 +1,2 @@
+npx prettier --check src/
 npx eslint src/
