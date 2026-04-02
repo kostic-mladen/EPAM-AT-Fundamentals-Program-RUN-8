@@ -1,24 +1,27 @@
 const BasePage = require('./base.page');
 
+const SELECTORS = {
+    price: '[data-test="inventory-item-price"]',
+    desc: '[data-test="inventory-item-desc"]',
+    addToCart: '//button[starts-with(@data-test,"add-to-cart")]',
+    remove: '//button[starts-with(@data-test,"remove")]'
+};
+
 class ProductDetailsPage extends BasePage {
-    // XPath — targets the price element by its class attribute
     get priceEl() {
-        return $('//div[@class="inventory_details_price"]');
+        return $(SELECTORS.price);
     }
 
-    // CSS — targets the description element by its class name
     get descriptionEl() {
-        return $('.inventory_details_desc');
+        return $(SELECTORS.desc);
     }
 
-    // XPath — starts-with so it matches regardless of which product name is in the data-test attribute
     get addToCartButton() {
-        return $('//button[starts-with(@data-test,"add-to-cart")]');
+        return $(SELECTORS.addToCart);
     }
 
-    // XPath — starts-with to match the remove button for any product
     get removeButton() {
-        return $('//button[starts-with(@data-test,"remove")]');
+        return $(SELECTORS.remove);
     }
 
     async getPrice() {

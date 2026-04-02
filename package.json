@@ -29,7 +29,7 @@
     "pretest:bdd": "npm run setup",
     "test:bdd": "wdio run src/configs/wdio.cucumber.conf.js && npm run allure:generate || npm run allure:generate",
     "pretest:all": "npm run setup",
-    "test:all": "wdio run src/configs/wdio.conf.js && wdio run src/configs/wdio.cucumber.conf.js && npm run allure:generate || npm run allure:generate",
+    "test:all": "wdio run src/configs/wdio.conf.js; wdio run src/configs/wdio.cucumber.conf.js; npm run allure:generate",
     "test:check": "npm run setup && wdio run src/configs/wdio.conf.js",
     "allure:generate": "allure generate allure-results --clean -o allure-report && echo 'Open: npm run allure:open'",
     "allure:open": "allure open allure-report",

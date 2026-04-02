@@ -1,22 +1,25 @@
+const SELECTORS = {
+    twitter: '.social_twitter a',
+    facebook: '.social_facebook a',
+    linkedin: '.social_linkedin a',
+    footer: 'footer.footer'
+};
+
 class FooterComponent {
-    // CSS — targets the Twitter link by its social list item class
     get twitterLink() {
-        return $('.social_twitter a');
+        return $(SELECTORS.twitter);
     }
 
-    // XPath — targets the Facebook link by its list item class
     get facebookLink() {
-        return $('//li[@class="social_facebook"]/a');
+        return $(SELECTORS.facebook);
     }
 
-    // CSS — targets the LinkedIn link by its social list item class
     get linkedInLink() {
-        return $('.social_linkedin a');
+        return $(SELECTORS.linkedin);
     }
 
-    // Scrolls the footer into view so the links can be interacted with
     async scrollToFooter() {
-        await $('footer.footer').scrollIntoView();
+        await $(SELECTORS.footer).scrollIntoView();
     }
 
     async getLinkHref(linkElement) {
